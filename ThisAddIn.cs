@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using Outlook = Microsoft.Office.Interop.Outlook;
+using Microsoft.Office.Interop.Outlook;
 using Office = Microsoft.Office.Core;
-using System.Diagnostics;
+using Outlook = Microsoft.Office.Interop.Outlook;
 
-namespace SentOnBehalfBCC
+namespace AutoBCC
 {
     public partial class ThisAddIn
     {
@@ -89,49 +90,38 @@ namespace SentOnBehalfBCC
             if (mailItem != null)
                 newMail(ref mailItem);
         }
-        private void MailItem_PropertyChange(string name)
+         private void newMail(ref Outlook.MailItem mail)
         {
-            Debug.WriteLine("##### {0}", name);
-            switch (name)
-            {
-                case "SentOnBehalfOfName":
-                    if (mail.Recipients.Contains(config.MailText))
-                        return;
-                    string smtp = mail.Sender?.GetSmtpAddress();
-                    if (smtp != null && smtp.Equals(config.MailText, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        Outlook.Recipient recipient = mail.Recipients.Add(config.MailText);
-                        recipient.Type = (int)Outlook.OlMailRecipientType.olBCC;
-                        mail.Recipients.ResolveAll();
-                    }
-                    break;
-            }
-        }
-        private void newMail(ref Outlook.MailItem mail)
-        {
+            Debug.WriteLine("NewMail: ########## {0}", config.MailText);
             this.mail = mail;
-            this.mail.PropertyChange += MailItem_PropertyChange;
-            changeSendOnBehalf(ref mail);
+            addAutoBCC(ref mail);
         }
 
-        private void changeSendOnBehalf(ref Outlook.MailItem mailItem)
+        private void addAutoBCC(ref Outlook.MailItem mailItem)
         {
-            Debug.WriteLine("changeSendOnBehalf");
-            foreach (Outlook.Recipient recipient in mailItem.Recipients)
+            Outlook.Recipient recipient;
+
+            if (mailItem.Sent)
             {
-                Debug.WriteLine(recipient.Address);
-                string smtpAddress = recipient.GetSmtpAddress();
+                Debug.WriteLine("Mail already sent");
+                return;
+            }
+
+            foreach (Outlook.Recipient mailrecipient in mailItem.Recipients)
+            {
+                string smtpAddress = mailrecipient.GetSmtpAddress();
                 Debug.WriteLine(smtpAddress);
                 if (smtpAddress.Equals(config.MailText, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    Debug.WriteLine("BCC and SentOnBehalf");
-                    recipient.Type = (int)Outlook.OlMailRecipientType.olBCC;
-                    mailItem.Sender = recipient.AddressEntry;
-                    mailItem.Recipients.ResolveAll();
                     return;
                 }
             }
+
+            Debug.WriteLine("Add AutoBCC");
+            recipient = mail.Recipients.Add(config.MailText);
+            recipient.Type = (int)Outlook.OlMailRecipientType.olBCC;
         }
+
         private void Explorers_NewExplorer(Outlook.Explorer explorer)
         {
             System.Windows.Forms.MessageBox.Show("Explorers_NewExplorer");

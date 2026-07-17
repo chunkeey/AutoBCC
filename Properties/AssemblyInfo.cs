@@ -6,12 +6,12 @@ using System.Security;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SentOnBehalfBCC")]
+[assembly: AssemblyTitle("AutoBCC")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SentOnBehalfBCC")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyProduct("AutoBCC")]
+[assembly: AssemblyCopyright("Copyright ©  2019,2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

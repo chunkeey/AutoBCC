@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace SentOnBehalfBCC.Properties {
+namespace AutoBCC.Properties {
     
     
     // This class allows you to handle specific events on the settings class:

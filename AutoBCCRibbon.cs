@@ -7,9 +7,9 @@ using System.Text;
 using System.Windows.Data;
 using Microsoft.Office.Tools.Ribbon;
 
-namespace SentOnBehalfBCC
+namespace AutoBCC
 {
-    public partial class SentOnBehalfBCCRibbon
+    public partial class AutoBCCRibbon
     {
         private void MyRibbon_Load(object sender, RibbonUIEventArgs e)
         {

@@ -24,31 +24,31 @@
     <ProjectGuid>{6904950C-EFF1-40A2-A378-145DF70AC025}</ProjectGuid>
     <OutputType>Library</OutputType>
     <NoStandardLibraries>false</NoStandardLibraries>
-    <RootNamespace>SentOnBehalfBCC</RootNamespace>
-    <AssemblyName>SentOnBehalfBCC</AssemblyName>
+    <RootNamespace>AutoBCC</RootNamespace>
+    <AssemblyName>AutoBCC</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
     <IsWebBootstrapper>False</IsWebBootstrapper>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <PublishUrl>C:\Develop\SentOnBehalfBCC\publish\</PublishUrl>
+    <PublishUrl>C:\Temp\publish\</PublishUrl>
     <InstallUrl />
     <TargetCulture>en</TargetCulture>
-    <ApplicationVersion>1.0.0.2</ApplicationVersion>
+    <ApplicationVersion>1.0.0.3</ApplicationVersion>
     <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
     <UpdateEnabled>true</UpdateEnabled>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>days</UpdateIntervalUnits>
-    <ProductName>Sent On Behalf BCC</ProductName>
-    <PublisherName>urbanSoft</PublisherName>
+    <ProductName>Auto BCC</ProductName>
+    <PublisherName>chunkeey@gmail.com</PublisherName>
     <SupportUrl />
-    <FriendlyName>SentOnBehalfBCC</FriendlyName>
+    <FriendlyName>AutoBCC</FriendlyName>
     <OfficeApplicationDescription />
     <LoadBehavior>3</LoadBehavior>
   </PropertyGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 und x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -58,7 +58,7 @@
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.VSTORuntime.4.0">
       <Visible>False</Visible>
-      <ProductName>Microsoft Visual Studio 2010 Tools for Office Runtime %28x86 and x64%29</ProductName>
+      <ProductName>Microsoft Visual Studio 2010-Tools für Office-Laufzeit %28x86 und x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
@@ -188,17 +188,17 @@
     <Compile Include="AModel.cs" />
     <Compile Include="Extension.cs" />
     <Compile Include="PropertyBinder.cs" />
-    <Compile Include="SentOnBehalfBCCRibbon.cs">
+    <Compile Include="AutoBCCRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SentOnBehalfBCCRibbon.Designer.cs">
-      <DependentUpon>SentOnBehalfBCCRibbon.cs</DependentUpon>
+    <Compile Include="AutoBCCRibbon.Designer.cs">
+      <DependentUpon>AutoBCCRibbon.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <EmbeddedResource Include="SentOnBehalfBCCRibbon.resx">
-      <DependentUpon>SentOnBehalfBCCRibbon.cs</DependentUpon>
+    <EmbeddedResource Include="AutoBCCRibbon.resx">
+      <DependentUpon>AutoBCCRibbon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -224,7 +224,7 @@
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Include="SentOnBehalfBCC_TemporaryKey.pfx" />
+    <None Include="AutoBCC_TemporaryKey.pfx" />
     <None Include="ThisAddIn.Designer.xml">
       <DependentUpon>ThisAddIn.cs</DependentUpon>
     </None>
@@ -259,11 +259,17 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>SentOnBehalfBCC_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>AutoBCC_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>4CBDC677D2C60E870055B588DA310DAA3220283E</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <!-- <PropertyGroup>
+    <ManifestKeyFile>AutoBCC_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>0166365AF3E2C73FC89A4E634010504F37320AF3</ManifestCertificateThumbprint>
-  </PropertyGroup>
+  </PropertyGroup> -->
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Include additional build rules for an Office application add-in. -->
@@ -272,9 +278,9 @@
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{BAA0C2D2-18E2-41B9-852F-F413020CAA33}">
-        <ProjectProperties HostName="Outlook" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Outlook" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\15.0\Outlook\InstallRoot\Path#outlook.exe" AddItemTemplatesGuid="{A58A78EB-1C92-4DDD-80CF-E8BD872ABFC4}" />
-        <Host Name="Outlook" GeneratedCodeNamespace="SentOnBehalfBCC" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
-          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" PublishedHash="00EA5038A019F75A901CA193924CD2E33F283C61" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
+        <ProjectProperties HostName="Outlook" HostPackage="{29A7B9D7-A7F1-4328-8EF0-6B2D1A56B2C1}" OfficeVersion="15.0" VstxVersion="4.0" ApplicationType="Outlook" Language="cs" TemplatesPath="" DebugInfoExeName="#Software\Microsoft\Office\16.0\Outlook\InstallRoot\Path#outlook.exe" AddItemTemplatesGuid="{A58A78EB-1C92-4DDD-80CF-E8BD872ABFC4}" />
+        <Host Name="Outlook" GeneratedCodeNamespace="AutoBCC" PublishedHash="69C324AB27932AA2FBF2B7EA72250886FF164DE6" IconIndex="0">
+          <HostItem Name="ThisAddIn" Code="ThisAddIn.cs" CanonicalName="AddIn" PublishedHash="4FE8A0E5EF15A6342A0747DE2D4303500CDB0AEA" CanActivate="false" IconIndex="1" Blueprint="ThisAddIn.Designer.xml" GeneratedCode="ThisAddIn.Designer.cs" />
         </Host>
       </FlavorProperties>
     </VisualStudio>

@@ -1,5 +1,5 @@
 ﻿using Outlook = Microsoft.Office.Interop.Outlook;
-namespace SentOnBehalfBCC
+namespace AutoBCC
 {
     public static class Extension
     {
